@@ -1,0 +1,7 @@
+{
+  "type": "cursedorigins:milkable_milk",
+  "key": {
+    "key": "key.origins.primary_active",
+    "continuous": true
+  }
+}

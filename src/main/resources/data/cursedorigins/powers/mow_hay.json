@@ -1,0 +1,21 @@
+{
+  "type": "cursedorigins:eat_grass",
+  "cooldown": 5,
+  "hud_render": {
+    "should_render": false
+  },
+  "key": {
+    "key": "key.use",
+    "continuous": true
+  },
+  "condition" : {
+    "type" : "origins:equipped_item",
+    "equipment_slot": "mainhand",
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "item": "minecraft:air"
+      }
+    }
+  }
+}

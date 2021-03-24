@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "cursedorigins",
+  "version": "${version}",
+
+  "name": "Cursed Origins",
+  "description": "Dash while you can.",
+  "authors": [
+    "Pug"
+  ],
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+
+  "license": "MIT",
+  "icon": "assets/cursedorigins/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.merchantpug.cursedorigins.CursedOrigins"
+    ]
+  },
+  "mixins": [
+    "cursedorigins.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": ">=0.29.4",
+    "minecraft": "1.16.x",
+    "origins": ">=0.6.1"
+  }
+}

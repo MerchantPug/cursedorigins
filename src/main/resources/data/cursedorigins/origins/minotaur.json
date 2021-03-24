@@ -1,0 +1,12 @@
+{
+	"powers": [
+		"cursedorigins:mow_hay",
+		"cursedorigins:delicious_dairy",
+		"cursedorigins:status_immunity",
+		"cursedorigins:cake_is_a_lie",
+		"cursedorigins:cant_use_potions"
+	],
+	"icon": "minecraft:milk_bucket",
+	"order": 20,
+	"impact": 3
+}
