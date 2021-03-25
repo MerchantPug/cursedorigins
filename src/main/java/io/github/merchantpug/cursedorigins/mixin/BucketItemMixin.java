@@ -25,9 +25,10 @@ public class BucketItemMixin extends Item {
             if (stack.getItem() == Items.BUCKET) {
                 if (player.world.isClient) {
                     MilkPacket.send();
+                    return ActionResult.success(player.world.isClient);
+                } else {
+                    return ActionResult.PASS;
                 }
-                ((PlayerEntity) entity).addExhaustion(10);
-                return ActionResult.success(player.world.isClient);
             } else {
                 return ActionResult.PASS;
             }
