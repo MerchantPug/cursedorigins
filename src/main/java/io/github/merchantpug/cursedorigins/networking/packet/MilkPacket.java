@@ -17,7 +17,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 public class MilkPacket {
-    public static final Identifier ID = new Identifier(CursedOrigins.MODID, "milkable_milk");
+    public static final Identifier ID = new Identifier(CursedOrigins.MODID, "milk_milk");
 
     public static void send() {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());

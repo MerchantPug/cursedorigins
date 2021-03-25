@@ -18,7 +18,6 @@ public class MilkableMilkPower extends Power implements Active {
         if (player.world.isClient) {
             MilkPacket.send();
         }
-        player.addExhaustion(10);
     }
 
     @Override
