@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cursedorigins:item/music_disc_creeper_rap"
+  }
+}

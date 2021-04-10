@@ -2,9 +2,9 @@
 	"powers": [
 		"cursedorigins:mow_hay",
 		"cursedorigins:delicious_dairy",
+		"cursedorigins:axe_proficiency",
 		"cursedorigins:status_immunity",
-		"cursedorigins:cake_is_a_lie",
-		"cursedorigins:cant_use_potions"
+		"cursedorigins:cake_is_a_lie"
 	],
 	"icon": "minecraft:milk_bucket",
 	"order": 20,

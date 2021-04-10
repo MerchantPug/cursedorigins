@@ -4,9 +4,35 @@
   "package": "io.github.merchantpug.cursedorigins.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BedBlockMixin",
     "BucketItemMixin",
     "CakeMixin",
-    "LivingEntityMixin"
+    "CreeperEntityMixin",
+    "EggEntityMixin",
+    "EndCrystalEntityMixin",
+    "EnderPearlEntityMixin",
+    "ExplosionMixin",
+    "FireballEntityMixin",
+    "FireworkRocketEntityMixin",
+    "ItemStackMixin",
+    "LivingEntityMixin",
+    "MinecraftServerAccessor",
+    "PersistentProjectileEntityMixin",
+    "PlayerEntityMixin",
+    "RespawnAnchorBlockMixin",
+    "ServerPlayerEntityAccessor",
+    "SkeletonEntityMixin",
+    "SnowballEntityMixin",
+    "StatusEffectMixin",
+    "TntEntityMixin",
+    "TridentEntityMixin",
+    "WitherSkeletonEntityMixin",
+    "ZombieEntityMixin"
+  ],
+  "client": [
+    "InGameHudMixin",
+    "PlayerEntityClientMixin",
+    "PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

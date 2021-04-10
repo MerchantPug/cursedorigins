@@ -1,0 +1,23 @@
+{
+  "type": "origins:multiple",
+  "modify_damage_taken": {
+    "type": "origins:modify_damage_taken",
+    "modifier": {
+      "value": 9999,
+      "operation": "addition"
+    }
+  },
+  "attribute": {
+    "type": "origins:attribute",
+    "modifier": {
+      "name": "Glass health decrease",
+      "attribute": "minecraft:generic.max_health",
+      "value": -18.0,
+      "operation": "addition"
+    }
+  },
+  "model_color": {
+    "type": "origins:model_color",
+    "alpha": 0.75
+  }
+}

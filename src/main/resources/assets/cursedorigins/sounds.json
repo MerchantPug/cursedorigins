@@ -1,0 +1,10 @@
+{
+  "music_disc.creeper": {
+    "sounds": [
+      {
+        "name": "cursedorigins:records/minecraft_creeper_rap",
+        "stream": true
+      }
+    ]
+  }
+}

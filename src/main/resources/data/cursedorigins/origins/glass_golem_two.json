@@ -1,0 +1,10 @@
+{
+	"powers": [
+		"cursedorigins:glass",
+		"cursedorigins:cannon",
+		"cursedorigins:comedy"
+	],
+	"icon": "minecraft:glass",
+	"order": 19,
+	"impact": 3
+}

@@ -1,0 +1,57 @@
+{
+  "type": "origins:multiple",
+  "low_tier_axes": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "name": "Axe proficiency bonus",
+      "value": 2.0,
+      "operation": "addition"
+    },
+    "condition": {
+      "type": "origins:equipped_item",
+      "equipment_slot": "mainhand",
+      "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:low_tier_axes"
+        }
+      }
+    }
+  },
+  "mid_tier_axes": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "name": "Axe proficiency bonus",
+      "value": 3.0,
+      "operation": "addition"
+    },
+    "condition": {
+      "type": "origins:equipped_item",
+      "equipment_slot": "mainhand",
+      "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:mid_tier_axes"
+        }
+      }
+    }
+  },
+  "high_tier_axes": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "name": "Axe proficiency bonus",
+      "value": 4.0,
+      "operation": "addition"
+    },
+    "condition": {
+      "type": "origins:equipped_item",
+      "equipment_slot": "mainhand",
+      "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:high_tier_axes"
+        }
+      }
+    }
+  }
+}

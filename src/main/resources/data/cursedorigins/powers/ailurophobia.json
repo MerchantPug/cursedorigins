@@ -1,0 +1,39 @@
+{
+  "type": "origins:stacking_status_effect",
+  "min_stacks": 1,
+  "max_stacks": 1,
+  "duration_per_stack": 20,
+  "effects": [
+    {
+      "effect": "minecraft:weakness",
+      "is_ambient": true,
+      "show_particles": false,
+      "show_icon": true
+    },
+    {
+      "effect": "minecraft:speed",
+      "is_ambient": true,
+      "show_particles": false,
+      "show_icon": true
+    }
+  ],
+  "condition": {
+    "type": "origins:or",
+    "conditions": [
+      {
+        "type": "cursedorigins:nearby_entities",
+        "entity_type": "minecraft:cat",
+        "player_box_multiplier": 5.0,
+        "comparison": ">=",
+        "compare_to": 1
+      },
+      {
+        "type": "cursedorigins:nearby_entities",
+        "entity_type": "minecraft:ocelot",
+        "player_box_multiplier": 5.0,
+        "comparison": ">=",
+        "compare_to": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "type": "cursedorigins:self_explode",
+  "explosion_radius": 3.0,
+  "key": {
+    "key": "key.origins.primary_active",
+    "continuous": true
+  },
+  "spawns_effect_cloud": true,
+  "condition": {
+    "type": "origins:or",
+    "conditions": [
+      {
+        "type": "cursedorigins:nearby_entities",
+        "entity_type": "minecraft:cat",
+        "player_box_multiplier": 5.0,
+        "comparison": ">=",
+        "compare_to": 1,
+        "inverted": "true"
+      },
+      {
+        "type": "cursedorigins:nearby_entities",
+        "entity_type": "minecraft:ocelot",
+        "player_box_multiplier": 5.0,
+        "comparison": ">=",
+        "compare_to": 1,
+        "inverted": "true"
+      }
+    ]
+  }
+}

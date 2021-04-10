@@ -1,6 +1,8 @@
 {
   "replace": false,
   "origins": [
+    "cursedorigins:literal_creeper",
+    "cursedorigins:glass_golem_two",
     "cursedorigins:minotaur"
   ]
 }

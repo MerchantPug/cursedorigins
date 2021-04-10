@@ -39,7 +39,11 @@ public class EatGrassPacket {
                 }
 
                 if (state.getBlock() instanceof FernBlock || state.getBlock() instanceof SeagrassBlock) {
-                    player.world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    if (state.getBlock() instanceof SeagrassBlock) {
+                        player.world.setBlockState(pos, Blocks.WATER.getDefaultState());
+                    } else {
+                        player.world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    }
                     player.getHungerManager().add(5, 6.0F);
                     player.world.syncWorldEvent(6386, pos, 0);
                     player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.PLAYERS, 1.0F, 0.4F / (player.getRandom().nextFloat() * 0.2F + 0.7F));
@@ -47,8 +51,20 @@ public class EatGrassPacket {
                 }
 
                 if (state.getBlock() instanceof TallPlantBlock && !(state.getBlock() instanceof TallFlowerBlock)) {
-                    player.world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    if (state.getBlock() instanceof TallSeagrassBlock) {
+                        player.world.setBlockState(pos, Blocks.WATER.getDefaultState());
+                    } else {
+                        player.world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    }
                     player.getHungerManager().add(8, 12.8F);
+                    player.world.syncWorldEvent(6386, pos, 0);
+                    player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.PLAYERS, 1.0F, 0.4F / (player.getRandom().nextFloat() * 0.2F + 0.7F));
+                    player.swingHand(Hand.MAIN_HAND, true);
+                }
+
+                if (state.getBlock() instanceof DeadBushBlock) {
+                    player.world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                    player.getHungerManager().add(1, -2.0F);
                     player.world.syncWorldEvent(6386, pos, 0);
                     player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.PLAYERS, 1.0F, 0.4F / (player.getRandom().nextFloat() * 0.2F + 0.7F));
                     player.swingHand(Hand.MAIN_HAND, true);

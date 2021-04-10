@@ -3,8 +3,8 @@
   "id": "cursedorigins",
   "version": "${version}",
 
-  "name": "Cursed Origins",
-  "description": "Dash while you can.",
+  "name": "CursedOrigins",
+  "description": "A not so serious Origins addon.",
   "authors": [
     "Pug"
   ],
@@ -22,6 +22,7 @@
       "io.github.merchantpug.cursedorigins.CursedOrigins"
     ]
   },
+  "accessWidener": "cursedorigins.accesswidener",
   "mixins": [
     "cursedorigins.mixins.json"
   ],
@@ -30,6 +31,6 @@
     "fabricloader": ">=0.7.4",
     "fabric": ">=0.29.4",
     "minecraft": "1.16.x",
-    "origins": ">=0.6.1"
+    "origins": ">=0.7.0"
   }
 }
