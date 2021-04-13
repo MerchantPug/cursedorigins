@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 @Environment(EnvType.CLIENT)
 @Mixin(PlayerEntity.class)
@@ -19,7 +20,7 @@ public abstract class PlayerEntityClientMixin extends LivingEntity implements Sk
         super(EntityType.PLAYER, world);
     }
 
-    @Override
+    @Unique
     public boolean shouldRenderOverlay() {
         if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this)) {
             return this.hasStatusEffect(CursedEffects.CHARGED);
