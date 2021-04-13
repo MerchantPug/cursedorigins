@@ -11,6 +11,7 @@
     "EggEntityMixin",
     "EndCrystalEntityMixin",
     "EnderPearlEntityMixin",
+    "EntityMixin",
     "ExplosionMixin",
     "FireballEntityMixin",
     "FireworkRocketEntityMixin",

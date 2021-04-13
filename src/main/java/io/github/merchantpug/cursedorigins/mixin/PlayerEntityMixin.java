@@ -10,20 +10,20 @@ import io.github.apace100.origins.origin.OriginLayer;
 import io.github.apace100.origins.registry.ModComponents;
 import io.github.merchantpug.cursedorigins.CursedOrigins;
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
-import io.github.merchantpug.cursedorigins.registry.CursedEffects;
 import io.github.merchantpug.cursedorigins.registry.CursedItems;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -116,14 +116,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
             cir.setReturnValue(SoundEvents.BLOCK_GLASS_BREAK);
         } else if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this)) {
             cir.setReturnValue(SoundEvents.ENTITY_CREEPER_DEATH);
-        }
-    }
-
-    @Override
-    public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
-        super.onStruckByLightning(world, lightning);
-        if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this)) {
-            this.addStatusEffect(new StatusEffectInstance(CursedEffects.CHARGED, 48000, 0, false, false, true));
         }
     }
 
