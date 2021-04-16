@@ -1,6 +1,5 @@
 package io.github.merchantpug.cursedorigins.mixin;
 
-import io.github.merchantpug.cursedorigins.entity.damage.PlayerChargeEnergySwirlOverlayFeatureRenderer;
 import io.github.merchantpug.cursedorigins.entity.renderer.GlassHeadFeatureRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,6 +24,5 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At("RETURN"))
     private void construct(EntityRenderDispatcher dispatcher, boolean slim, CallbackInfo ci) {
         this.addFeature(new GlassHeadFeatureRenderer(this));
-        this.addFeature(new PlayerChargeEnergySwirlOverlayFeatureRenderer(this));
     }
 }
