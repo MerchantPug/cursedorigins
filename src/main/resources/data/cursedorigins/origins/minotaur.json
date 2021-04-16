@@ -4,7 +4,8 @@
 		"cursedorigins:delicious_dairy",
 		"cursedorigins:axe_proficiency",
 		"cursedorigins:status_immunity",
-		"cursedorigins:cake_is_a_lie"
+		"cursedorigins:cake_is_a_lie",
+		"cursedorigins:inventory_eat_grass"
 	],
 	"icon": "minecraft:milk_bucket",
 	"order": 20,
