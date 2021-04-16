@@ -44,6 +44,7 @@ public class CursedPowers {
             power.setKey((Active.Key)data.get("key"));
             return power;
         }).allowCondition());
+    public static final PowerType<Power> INVENTORY_EAT_GRASS = new PowerTypeReference(new Identifier(CursedOrigins.MODID, "inventory_eat_grass"));
     public static final PowerType<Power> CALCIUM = new PowerTypeReference(new Identifier(CursedOrigins.MODID, "status_immunity"));
     public static final PowerType<Power> CAKE_IS_A_LIE = new PowerTypeReference(new Identifier(CursedOrigins.MODID, "cake_is_a_lie"));
     public static final PowerType<Power> AXE_PROFICIENCY = new PowerTypeReference(new Identifier(CursedOrigins.MODID, "axe_proficiency"));
