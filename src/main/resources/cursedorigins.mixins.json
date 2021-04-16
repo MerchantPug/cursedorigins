@@ -15,6 +15,9 @@
     "ExplosionMixin",
     "FireballEntityMixin",
     "FireworkRocketEntityMixin",
+    "ItemAccessor",
+    "ItemMixin",
+    "ItemsMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
     "MinecraftServerAccessor",
@@ -32,7 +35,6 @@
   ],
   "client": [
     "InGameHudMixin",
-    "PlayerEntityClientMixin",
     "PlayerEntityRendererMixin"
   ],
   "injectors": {
