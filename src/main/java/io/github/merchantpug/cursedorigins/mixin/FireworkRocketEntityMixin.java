@@ -3,7 +3,6 @@ package io.github.merchantpug.cursedorigins.mixin;
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.FlyingItemEntity;
 import net.minecraft.entity.projectile.FireworkRocketEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.world.World;
@@ -13,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
 @Mixin(FireworkRocketEntity.class)
-public abstract class FireworkRocketEntityMixin extends ProjectileEntity implements FlyingItemEntity {
+public abstract class FireworkRocketEntityMixin extends ProjectileEntity {
 
     public FireworkRocketEntityMixin(EntityType<? extends ProjectileEntity> entityType, World world) {
         super(entityType, world);

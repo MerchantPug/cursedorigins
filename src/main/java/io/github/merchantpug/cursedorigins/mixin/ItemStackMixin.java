@@ -34,6 +34,7 @@ public abstract class ItemStackMixin {
 
     @Shadow public abstract Item getItem();
 
+    @Environment(EnvType.CLIENT)
     @Inject(method = "getTooltip", at = @At(value = "INVOKE", target = "net/minecraft/entity/attribute/EntityAttributeModifier.getValue()D"), locals = LocalCapture.CAPTURE_FAILHARD)
     private void getLocalsFromTooltip(PlayerEntity player, TooltipContext context, CallbackInfoReturnable<List<Text>> cir,
                                       List list, int i, EquipmentSlot var6[], int var7, int var8, EquipmentSlot equipmentSlot, Multimap multimap, Iterator var11, Map.Entry<EntityAttribute, EntityAttributeModifier> entry,
