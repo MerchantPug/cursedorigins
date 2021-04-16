@@ -10,18 +10,17 @@ import net.minecraft.server.command.CommandOutput;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Nameable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public abstract class EntityMixin implements Nameable, CommandOutput {
-    @Shadow public abstract boolean isLiving();
+
 
     @Inject(method = "onStruckByLightning", at = @At("HEAD"))
     private void onStruckByLightning(ServerWorld world, LightningEntity lightning, CallbackInfo ci) {
-        if (this.isLiving()) {
+        if ((Entity)(Object)this instanceof LivingEntity) {
             if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive((LivingEntity)(Object)this)) {
                 ((LivingEntity)(Object)this).addStatusEffect(new StatusEffectInstance(CursedEffects.CHARGED, 48000, 0));
             }
