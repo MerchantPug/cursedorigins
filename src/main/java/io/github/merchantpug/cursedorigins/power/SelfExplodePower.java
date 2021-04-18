@@ -43,7 +43,7 @@ public class SelfExplodePower extends Power implements Active {
                 }
 
                 Collection<StatusEffectInstance> collection = player.getStatusEffects();
-                if (!collection.isEmpty()) {
+                if (!collection.isEmpty() && this.spawnsEffectCloud) {
                     AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(player.world, player.getX(), player.getY(), player.getZ());
                     areaEffectCloudEntity.setRadius(2.5F);
                     areaEffectCloudEntity.setRadiusOnUse(-0.5F);
