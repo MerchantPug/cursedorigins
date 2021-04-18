@@ -1,6 +1,6 @@
 package io.github.merchantpug.cursedorigins;
 
-import io.github.merchantpug.cursedorigins.config.ServerConfig;
+import io.github.merchantpug.cursedorigins.config.MinotaurConfig;
 import io.github.merchantpug.cursedorigins.networking.packet.EatGrassPacket;
 import io.github.merchantpug.cursedorigins.networking.packet.MilkPacket;
 import io.github.merchantpug.cursedorigins.registry.*;
@@ -21,7 +21,7 @@ public class CursedOrigins implements ModInitializer {
 		LOGGER.info("CursedOrigins is initializing. Please laugh, I'm begging you!");
 
 		if(!configRegistered) {
-			AutoConfig.register(ServerConfig.class, Toml4jConfigSerializer::new);
+			AutoConfig.register(MinotaurConfig.class, Toml4jConfigSerializer::new);
 			configRegistered = true;
 		}
 

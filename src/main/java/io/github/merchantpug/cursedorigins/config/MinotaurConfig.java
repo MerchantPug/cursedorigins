@@ -7,8 +7,8 @@ import me.shedaniel.autoconfig.annotation.Config;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Config(name = CursedOrigins.MODID + "_server")
-public class ServerConfig implements ConfigData {
+@Config(name = CursedOrigins.MODID + "_minotaur")
+public class MinotaurConfig implements ConfigData {
 
     public ArrayList<ConfigFoodItem> minotaur_food = new ArrayList<ConfigFoodItem>(Arrays.asList(
             new ConfigFoodItem("minecraft:grass", 5, 6.0F),
