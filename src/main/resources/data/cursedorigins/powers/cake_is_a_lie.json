@@ -1,10 +1,18 @@
 {
   "type": "origins:prevent_item_use",
   "item_condition": {
-    "type": "origins:ingredient",
-    "ingredient": {
-      "tag": "cursedorigins:minotaur_edible"
-    },
-    "inverted": true
+    "type": "origins:and",
+    "conditions": [
+      {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:minotaur_edible"
+        },
+        "inverted": true
+      },
+      {
+        "type": "origins:food"
+      }
+    ]
   }
 }
