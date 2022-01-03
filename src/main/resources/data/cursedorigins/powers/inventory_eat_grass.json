@@ -1,11 +1,11 @@
 {
   "type": "origins:multiple",
   "edible_grasses": {
-    "type": "toomanyorigins:edible_item",
+    "type": "cursedorigins:edible_item",
     "item_condition": {
       "type": "origins:ingredient",
       "ingredient": {
-        "tag": "toomanyorigins:grasses"
+        "tag": "cursedorigins:grasses"
       }
     },
     "food_component": {
@@ -15,11 +15,11 @@
     }
   },
   "edible_tall_grasses_grains": {
-    "type": "toomanyorigins:edible_item",
+    "type": "cursedorigins:edible_item",
     "item_condition": {
       "type": "origins:ingredient",
       "ingredient": {
-        "tag": "toomanyorigins:tall_grasses_grains"
+        "tag": "cursedorigins:tall_grasses_grains"
       }
     },
     "food_component": {

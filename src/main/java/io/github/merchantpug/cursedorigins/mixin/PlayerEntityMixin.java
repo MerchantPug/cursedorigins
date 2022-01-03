@@ -57,7 +57,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         return bl6;
     }
 
-    @Inject(method = "damage", at = @At(value = "RETURN", ordinal = 4))
+    @Inject(method = "damage", at = @At(value = "HEAD"))
     private void captureDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         recentDamageSource = source;
     }
@@ -87,24 +87,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 OriginComponent.sync((PlayerEntity) (Object) this);
                 this.sendMessage(text, false);
             }
-        }
-    }
-
-    @Inject(method = "getHurtSound", at = @At("HEAD"), cancellable = true)
-    private void soundEvent(DamageSource source, CallbackInfoReturnable<SoundEvent> cir) {
-        if (CursedPowers.COMEDY.isActive(this)) {
-            cir.setReturnValue(SoundEvents.BLOCK_GLASS_BREAK);
-        } else if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this)) {
-            cir.setReturnValue(SoundEvents.ENTITY_CREEPER_HURT);
-        }
-    }
-
-    @Inject(method = "getDeathSound", at = @At("HEAD"), cancellable = true)
-    private void replaceDeathSound(CallbackInfoReturnable<SoundEvent> cir) {
-        if (CursedPowers.COMEDY.isActive(this)) {
-            cir.setReturnValue(SoundEvents.BLOCK_GLASS_BREAK);
-        } else if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this)) {
-            cir.setReturnValue(SoundEvents.ENTITY_CREEPER_DEATH);
         }
     }
 

@@ -21,6 +21,8 @@
   "power.cursedorigins.status_immunity.description": "You are immune to all status effects.",
   "power.cursedorigins.cake_is_a_lie.name": "The Cake is a Lie",
   "power.cursedorigins.cake_is_a_lie.description": "You can't digest normal sources of food.",
+  "power.cursedorigins.gluten_intolerance.name": "Gluten Intolerance",
+  "power.cursedorigins.gluten_intolerance.description": "You are unable to eat bread.",
 
   "gui.cursedorigins.plus_one_attack_damage": "+1 Attack Damage",
   "gui.cursedorigins.plus_two_attack_damage": "+2 Attack Damage",

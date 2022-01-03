@@ -3,14 +3,34 @@
   "tall_grasses_grains": {
     "type": "origins:active_self",
     "entity_action": {
-      "type": "toomanyorigins:raycast",
+      "type": "cursedorigins:raycast",
       "block_action": {
-        "type": "toomanyorigins:destroy",
+        "type": "cursedorigins:destroy",
         "drop_block": false
       },
       "block_condition": {
-        "type": "origins:in_tag",
-        "tag": "toomanyorigins:tall_grasses_grains"
+        "type": "origins:or",
+        "conditions": [
+          {
+            "type": "origins:in_tag",
+            "tag": "cursedorigins:tall_grasses"
+          },
+          {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:block",
+                "block": "minecraft:wheat"
+              },
+              {
+                "type": "origins:block_state",
+                "property": "age",
+                "comparison": "==",
+                "compare_to": 7
+              }
+            ]
+          }
+        ]
       },
       "self_action": {
         "type": "origins:and",
@@ -21,7 +41,7 @@
             "saturation": 0.6
           },
           {
-            "type": "toomanyorigins:swing_hand",
+            "type": "cursedorigins:swing_hand",
             "hand": "MAIN_HAND"
           },
           {
@@ -51,14 +71,14 @@
   "grasses": {
     "type": "origins:active_self",
     "entity_action": {
-      "type": "toomanyorigins:raycast",
+      "type": "cursedorigins:raycast",
       "block_action": {
-        "type": "toomanyorigins:destroy",
+        "type": "cursedorigins:destroy",
         "drop_block": false
       },
       "block_condition": {
         "type": "origins:in_tag",
-        "tag": "toomanyorigins:grasses"
+        "tag": "cursedorigins:grasses"
       },
       "self_action": {
         "type": "origins:and",
@@ -69,7 +89,7 @@
             "saturation": 0.6
           },
           {
-            "type": "toomanyorigins:swing_hand",
+            "type": "cursedorigins:swing_hand",
             "hand": "MAIN_HAND"
           },
           {
@@ -99,12 +119,12 @@
   "grass_blocks": {
     "type": "origins:active_self",
     "entity_action": {
-      "type": "toomanyorigins:raycast",
+      "type": "cursedorigins:raycast",
       "block_action": {
         "type": "origins:and",
         "actions": [
           {
-            "type": "toomanyorigins:destroy",
+            "type": "cursedorigins:destroy",
             "drop_block": false
           },
           {
@@ -115,7 +135,7 @@
       },
       "block_condition": {
         "type": "origins:in_tag",
-        "tag": "toomanyorigins:grass_blocks"
+        "tag": "cursedorigins:grass_blocks"
       },
       "self_action": {
         "type": "origins:and",
@@ -126,7 +146,7 @@
             "saturation": 0.6
           },
           {
-            "type": "toomanyorigins:swing_hand",
+            "type": "cursedorigins:swing_hand",
             "hand": "MAIN_HAND"
           },
           {

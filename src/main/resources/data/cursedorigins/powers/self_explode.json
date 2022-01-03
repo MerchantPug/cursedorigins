@@ -1,29 +1,55 @@
 {
-  "type": "cursedorigins:self_explode",
-  "explosion_radius": 3.0,
+  "type": "origins:active_self",
+  "cooldown": 20,
+  "entity_action": {
+    "type": "cursedorigins:literal_creeper_explode",
+    "power": 3.0,
+    "destruction_type": "DESTROY",
+    "use_charged": true,
+    "charged_modifier": {
+      "operation": "multiply_total",
+      "value": 1
+    }
+  },
   "key": {
     "key": "key.origins.primary_active",
     "continuous": true
   },
   "spawns_effect_cloud": true,
   "condition": {
-    "type": "origins:or",
+    "type": "origins:and",
     "conditions": [
       {
-        "type": "cursedorigins:nearby_entities",
-        "entity_type": "minecraft:cat",
-        "player_box_multiplier": 5.0,
-        "comparison": ">=",
-        "compare_to": 1,
-        "inverted": "true"
+        "type": "cursedorigins:join_invulnerability_ticks",
+        "compare_to": 0,
+        "comparison": "<"
       },
       {
-        "type": "cursedorigins:nearby_entities",
-        "entity_type": "minecraft:ocelot",
-        "player_box_multiplier": 5.0,
-        "comparison": ">=",
-        "compare_to": 1,
-        "inverted": "true"
+        "type": "origins:or",
+        "conditions": [
+          {
+            "type": "cursedorigins:entity_in_radius",
+            "condition": {
+              "type": "origins:entity_type",
+              "entity_type": "minecraft:cat"
+            },
+            "radius": 5.0,
+            "comparison": ">=",
+            "compare_to": 1,
+            "inverted": true
+          },
+          {
+            "type": "cursedorigins:entity_in_radius",
+            "condition": {
+              "type": "origins:entity_type",
+              "entity_type": "minecraft:ocelot"
+            },
+            "radius": 5.0,
+            "comparison": ">=",
+            "compare_to": 1,
+            "inverted": true
+          }
+        ]
       }
     ]
   }

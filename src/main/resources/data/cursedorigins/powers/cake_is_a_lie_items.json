@@ -1,0 +1,34 @@
+{
+  "type": "origins:prevent_item_use",
+  "item_condition": {
+    "type": "origins:and",
+    "conditions": [
+      {
+        "type": "origins:food"
+      },
+      {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:tall_grasses_grains"
+        },
+        "inverted": true
+      },
+      {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:grasses"
+        },
+        "inverted": true
+      },
+      {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "item": "minecraft:bread"
+        },
+        "inverted": true
+      }
+    ]
+  },
+  "name": "power.cursedorigins.cake_is_a_lie.name",
+  "hidden": true
+}
