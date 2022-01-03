@@ -8,6 +8,7 @@ import io.github.apace100.calio.data.SerializableDataType;
 import io.github.apace100.calio.data.SerializableDataTypes;
 import io.github.merchantpug.cursedorigins.CursedOrigins;
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
+import io.github.merchantpug.cursedorigins.registry.CursedEffects;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,6 +17,7 @@ import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.Identifier;
@@ -44,7 +46,7 @@ public class LiteralCreeperExplodeAction {
     }
 
     private static float applyChargedModifiers(SerializableData.Instance data, Entity entity) {
-        if (!data.getBoolean("use_charged")) return data.getFloat("speed");
+        if (!data.getBoolean("use_charged")) return data.getFloat("power");
         boolean tmoCharged;
         boolean cursedCharged;
         List<EntityAttributeModifier> chargedModifiers = new ArrayList<>();
@@ -57,17 +59,21 @@ public class LiteralCreeperExplodeAction {
             });
         }
         tmoCharged = FabricLoader.getInstance().isModLoaded("toomanyorigins") && ((LivingEntity) entity).hasStatusEffect(Registry.STATUS_EFFECT.get(new Identifier("toomanyorigins", "charged")));
-        cursedCharged = FabricLoader.getInstance().isModLoaded("cursedorigins") && ((LivingEntity) entity).hasStatusEffect(Registry.STATUS_EFFECT.get(new Identifier("cursedorigins", "charged")));
+        cursedCharged = ((LivingEntity) entity).hasStatusEffect(CursedEffects.CHARGED);
 
         if (tmoCharged || cursedCharged) {
-            ((LivingEntity)entity).removeStatusEffect(Registry.STATUS_EFFECT.get(new Identifier("toomanyorigins", "charged")));
-            ((LivingEntity)entity).removeStatusEffect(Registry.STATUS_EFFECT.get(new Identifier("cursedorigins", "charged")));
             return (float) AttributeUtil.applyModifiers(chargedModifiers, data.getFloat("power"));
         }
         return data.getFloat("power");
     }
 
     private static void summonExplosion(SerializableData.Instance data, Entity entity, float power) {
+        boolean tmoCharged = FabricLoader.getInstance().isModLoaded("toomanyorigins") && ((LivingEntity) entity).hasStatusEffect(Registry.STATUS_EFFECT.get(new Identifier("toomanyorigins", "charged")));
+        boolean cursedCharged = ((LivingEntity) entity).hasStatusEffect(CursedEffects.CHARGED);
+
+        DamageSource entityDamageSource = data.getBoolean("use_charged") && (tmoCharged || cursedCharged) ? CursedDamageSources.chargedExplosion((LivingEntity)entity) : CursedDamageSources.creeperExplosion((LivingEntity)entity);
+        DamageSource nullDamageSource = data.getBoolean("use_charged") && (tmoCharged || cursedCharged) ? CursedDamageSources.chargedExplosion((LivingEntity)null) : CursedDamageSources.creeperExplosion((LivingEntity)null);
+
         if(data.isPresent("indestructible")) {
             Predicate<CachedBlockPosition> blockCondition = (Predicate<CachedBlockPosition>)data.get("indestructible");
             ExplosionBehavior eb = new ExplosionBehavior() {
@@ -82,19 +88,23 @@ public class LiteralCreeperExplodeAction {
             };
             entity.world.createExplosion(data.getBoolean("damage_self") ? null : entity,
                     entity instanceof LivingEntity ?
-                            CursedDamageSources.creeperExplosion((LivingEntity)entity) :
-                            CursedDamageSources.creeperExplosion((LivingEntity) null),
+                            entityDamageSource :
+                            nullDamageSource,
                     eb, entity.getX(), entity.getY(), entity.getZ(),
                     power, data.getBoolean("create_fire"),
                     (Explosion.DestructionType) data.get("destruction_type"));
         } else {
             entity.world.createExplosion(data.getBoolean("damage_self") ? null : entity,
                     entity instanceof LivingEntity ?
-                            CursedDamageSources.creeperExplosion((LivingEntity)entity) :
-                            CursedDamageSources.creeperExplosion((LivingEntity) null),
+                            entityDamageSource :
+                            nullDamageSource,
                     null, entity.getX(), entity.getY(), entity.getZ(),
                     power, data.getBoolean("create_fire"),
                     (Explosion.DestructionType) data.get("destruction_type"));
+        }
+        if (tmoCharged || cursedCharged) {
+            ((LivingEntity) entity).removeStatusEffect(Registry.STATUS_EFFECT.get(new Identifier("toomanyorigins", "charged")));
+            ((LivingEntity) entity).removeStatusEffect(CursedEffects.CHARGED);
         }
     }
 

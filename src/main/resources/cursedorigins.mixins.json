@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "BedBlockMixin",
-    "CreeperEntityMixin",
     "DamageSourceMixin",
     "EggEntityMixin",
     "EndCrystalEntityMixin",
@@ -17,13 +16,10 @@
     "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
     "RespawnAnchorBlockMixin",
-    "SkeletonEntityMixin",
     "SnowballEntityMixin",
     "StatusEffectMixin",
     "TntEntityMixin",
-    "TridentEntityMixin",
-    "WitherSkeletonEntityMixin",
-    "ZombieEntityMixin"
+    "TridentEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

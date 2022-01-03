@@ -81,7 +81,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private void changeToLiteralCreeper(DamageSource source, float amount, CallbackInfo ci) {
         Text text = new TranslatableText("chat.creeperalert");
         if (this.world.isClient || this.isInvulnerableTo(source)) return;
-        if (source.getName().equals("creeperExplosion.player") || source.getName().equals("chargedCreeperExplosion.player.item") || source.getName().equals("chargedCreeperExplosion.player") || source.getName().equals("chargedCreeperExplosion.player.item")) {
+        if (source.getName().equals("creeperExplosion") || source.getName().equals("creeperExplosion.player") || source.getName().equals("chargedCreeperExplosion") || source.getName().equals("chargedCreeperExplosion.player")) {
             if (!ModComponents.ORIGIN.get(this).getOrigin(OriginLayers.getLayer(Origins.identifier("origin"))).equals(OriginRegistry.get(CursedOrigins.identifier("literal_creeper")))) {
                 ModComponents.ORIGIN.get(this).setOrigin(OriginLayers.getLayer(Origins.identifier("origin")), OriginRegistry.get(CursedOrigins.identifier("literal_creeper")));
                 OriginComponent.sync((PlayerEntity) (Object) this);
