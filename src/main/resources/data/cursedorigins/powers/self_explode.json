@@ -8,7 +8,7 @@
     "use_charged": true,
     "charged_modifier": {
       "operation": "multiply_total",
-      "value": 1
+      "value": 2
     }
   },
   "key": {
@@ -48,6 +48,17 @@
             "comparison": ">=",
             "compare_to": 1,
             "inverted": true
+          },
+          {
+            "type": "cursedorigins:entity_in_radius",
+            "condition": {
+              "type": "origins:origin",
+              "origin": "origins:feline",
+              "layer": "origins:origin"
+            },
+            "radius": 5.0,
+            "comparison": ">=",
+            "compare_to": 1
           }
         ]
       }

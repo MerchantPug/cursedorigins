@@ -17,6 +17,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
+import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -41,7 +42,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     private DamageSource recentDamageSource;
 
     @Shadow public abstract void sendMessage(Text message, boolean actionBar);
-    @Shadow public abstract ItemEntity dropItem(ItemStack stack, boolean retainOwnership);
 
     @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
 
@@ -86,21 +86,6 @@ public abstract class PlayerEntityMixin extends LivingEntity {
                 ModComponents.ORIGIN.get(this).setOrigin(OriginLayers.getLayer(Origins.identifier("origin")), OriginRegistry.get(CursedOrigins.identifier("literal_creeper")));
                 OriginComponent.sync((PlayerEntity) (Object) this);
                 this.sendMessage(text, false);
-            }
-        }
-    }
-
-    @Inject(method = "onDeath", at = @At("HEAD"))
-    private void creeperDisc(DamageSource source, CallbackInfo ci) {
-        if (CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this)) {
-            if (source.getName().equals("arrow") && source.getAttacker() instanceof AbstractSkeletonEntity || CursedPowers.THIS_IS_A_SECRET_TO_ALL.isActive(this) && (source.getName().equals("arrow.item")) && source.getAttacker() instanceof AbstractSkeletonEntity) {
-                this.dropItem(CursedItems.CREEPER_DISC.getDefaultStack(), false);
-            }
-            if (!this.world.isClient && source.getAttacker() instanceof PlayerEntity && this.world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-                int i;
-                for (i = 0; i < 3; ++i) {
-                    this.dropItem(Items.GUNPOWDER.getDefaultStack(), false);
-                }
             }
         }
     }

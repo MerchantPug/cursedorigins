@@ -1,22 +1,20 @@
 {
-  "type": "origins:stacking_status_effect",
-  "min_stacks": 1,
-  "max_stacks": 1,
-  "duration_per_stack": 20,
-  "effects": [
+  "type": "origins:conditioned_attribute",
+  "modifiers": [
     {
-      "effect": "minecraft:weakness",
-      "is_ambient": true,
-      "show_particles": false,
-      "show_icon": true
+      "attribute": "minecraft:generic.movement_speed",
+      "operation": "MULTIPLY_TOTAL",
+      "value": 0.2,
+      "name": "Increased speed when around felines"
     },
     {
-      "effect": "minecraft:speed",
-      "is_ambient": true,
-      "show_particles": false,
-      "show_icon": true
+      "attribute": "minecraft:generic.attack_damage",
+      "operation": "ADDITION",
+      "value": -4,
+      "name": "Decreased attack damage when around felines"
     }
   ],
+
   "condition": {
     "type": "origins:or",
     "conditions": [
@@ -35,6 +33,17 @@
         "condition": {
           "type": "origins:entity_type",
           "entity_type": "minecraft:ocelot"
+        },
+        "radius": 5.0,
+        "comparison": ">=",
+        "compare_to": 1
+      },
+      {
+        "type": "cursedorigins:entity_in_radius",
+        "condition": {
+          "type": "origins:origin",
+          "origin": "origins:feline",
+          "layer": "origins:origin"
         },
         "radius": 5.0,
         "comparison": ">=",
