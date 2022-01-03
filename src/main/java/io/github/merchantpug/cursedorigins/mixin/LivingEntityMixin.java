@@ -24,20 +24,6 @@ public abstract class LivingEntityMixin extends Entity {
         super(type, world);
     }
 
-    @Inject(method = "addStatusEffect", at = @At("HEAD"), cancellable = true)
-    private void addStatusEffect(StatusEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
-        if (CursedPowers.CALCIUM.isActive(this)) {
-            cir.setReturnValue(false);
-        }
-    }
-
-    @Inject(method = "isAffectedBySplashPotions", at = @At("HEAD"), cancellable = true)
-    private void isAffectedBySplashPotions(CallbackInfoReturnable<Boolean> cir) {
-        if (CursedPowers.CALCIUM.isActive(this)) {
-            cir.setReturnValue(false);
-        }
-    }
-
     @Inject(method = "canHaveStatusEffect", at = @At("HEAD"), cancellable = true)
     private void makeImmuneToHealthIncreases(StatusEffectInstance effect, CallbackInfoReturnable<Boolean> cir) {
         if (CursedPowers.GLASS.isActive(this)) {

@@ -1,6 +1,24 @@
 {
   "type": "origins:multiple",
-  "low_tier_axes": {
+  "plus_one_axes": {
+    "type": "origins:modify_damage_dealt",
+    "modifier": {
+      "name": "Axe proficiency bonus",
+      "value": 1.0,
+      "operation": "addition"
+    },
+    "condition": {
+      "type": "origins:equipped_item",
+      "equipment_slot": "mainhand",
+      "item_condition": {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "tag": "cursedorigins:plus_one_axes"
+        }
+      }
+    }
+  },
+  "plus_two_axes": {
     "type": "origins:modify_damage_dealt",
     "modifier": {
       "name": "Axe proficiency bonus",
@@ -13,45 +31,35 @@
       "item_condition": {
         "type": "origins:ingredient",
         "ingredient": {
-          "tag": "cursedorigins:low_tier_axes"
+          "tag": "cursedorigins:plus_two_axes"
         }
       }
     }
   },
-  "mid_tier_axes": {
-    "type": "origins:modify_damage_dealt",
-    "modifier": {
-      "name": "Axe proficiency bonus",
-      "value": 3.0,
-      "operation": "addition"
-    },
-    "condition": {
-      "type": "origins:equipped_item",
-      "equipment_slot": "mainhand",
-      "item_condition": {
-        "type": "origins:ingredient",
-        "ingredient": {
-          "tag": "cursedorigins:mid_tier_axes"
-        }
+  "plus_one_axe_toolip": {
+    "type": "origins:tooltip",
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "tag": "cursedorigins:plus_one_axes"
       }
+    },
+    "text": {
+      "translate": "gui.cursedorigins.plus_one_attack_damage",
+      "color": "blue"
     }
   },
-  "high_tier_axes": {
-    "type": "origins:modify_damage_dealt",
-    "modifier": {
-      "name": "Axe proficiency bonus",
-      "value": 4.0,
-      "operation": "addition"
-    },
-    "condition": {
-      "type": "origins:equipped_item",
-      "equipment_slot": "mainhand",
-      "item_condition": {
-        "type": "origins:ingredient",
-        "ingredient": {
-          "tag": "cursedorigins:high_tier_axes"
-        }
+  "plus_two_axe_toolip": {
+    "type": "origins:tooltip",
+    "item_condition": {
+      "type": "origins:ingredient",
+      "ingredient": {
+        "tag": "cursedorigins:plus_two_axes"
       }
+    },
+    "text": {
+      "translate": "gui.cursedorigins.plus_two_attack_damage",
+      "color": "blue"
     }
   }
 }

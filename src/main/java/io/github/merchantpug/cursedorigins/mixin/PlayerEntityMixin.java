@@ -1,14 +1,12 @@
 package io.github.merchantpug.cursedorigins.mixin;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import io.github.apace100.origins.Origins;
 import io.github.apace100.origins.component.OriginComponent;
-import io.github.apace100.origins.origin.Origin;
-import io.github.apace100.origins.origin.OriginLayer;
+import io.github.apace100.origins.origin.OriginLayers;
+import io.github.apace100.origins.origin.OriginRegistry;
 import io.github.apace100.origins.registry.ModComponents;
 import io.github.merchantpug.cursedorigins.CursedOrigins;
+import io.github.merchantpug.cursedorigins.access.DamageSourceAccess;
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
 import io.github.merchantpug.cursedorigins.registry.CursedItems;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
@@ -22,34 +20,30 @@ import net.minecraft.entity.mob.AbstractSkeletonEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.resource.ResourceManager;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity {
-    Text text = new TranslatableText("chat.creeperalert");
-    private JsonObject layerObject;
-    private JsonObject originObject;
+    @Unique
+    private DamageSource recentDamageSource;
+
     @Shadow public abstract void sendMessage(Text message, boolean actionBar);
     @Shadow public abstract ItemEntity dropItem(ItemStack stack, boolean retainOwnership);
+
+    @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -63,40 +57,35 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         return bl6;
     }
 
-    @Inject(method = "damageArmor", at = @At("HEAD"), cancellable = true)
-    private void damageArmor(DamageSource source, float amount, CallbackInfo ci) {
-        if (CursedPowers.GLASS.isActive(this)) {
-            ci.cancel();
-        }
+    @Inject(method = "damage", at = @At(value = "RETURN", ordinal = 4))
+    private void captureDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        recentDamageSource = source;
     }
 
-    @Inject(method = "applyDamage", at = @At("HEAD"), cancellable = true)
-    private void changeToLiteralCreeper(DamageSource source, float amount, CallbackInfo ci) {
-        if (!this.world.isClient) {
-            if (!this.isInvulnerableTo(source)) {
-                if (source.getName().equals("creeperExplosion.player") || source.getName().equals("chargedCreeperExplosion.player.item") || source.getName().equals("chargedCreeperExplosion.player") || source.getName().equals("chargedCreeperExplosion.player.item")) {
-                    MinecraftServer server = this.getServer();
-                    assert server != null;
-                    ResourceManager manager = ((MinecraftServerAccessor)server).getServerResourceManager().getResourceManager();
-                    try(InputStream layerInput = manager.getResource(new Identifier(Origins.MODID, "origin_layers/origin.json")).getInputStream()) {
-                        JsonReader layerReader = new JsonReader(new InputStreamReader(layerInput));
-                        this.layerObject = new JsonParser().parse(layerReader).getAsJsonObject();
+    @Inject(method = "damageArmor", at = @At("HEAD"), cancellable = true)
+    private void cancelArmorDamage(DamageSource source, float amount, CallbackInfo ci) {
+        if (((DamageSourceAccess)source).isGlassGolemSource() || CursedPowers.GLASS.isActive((PlayerEntity)(Object)this)) ci.cancel();
+    }
 
-                    } catch (IOException e) {
-                        throw new RuntimeException("Failed to load OriginLayer file", e);
-                    }
-                    try(InputStream originInput = manager.getResource(new Identifier(CursedOrigins.MODID, "origins/literal_creeper.json")).getInputStream()) {
-                        JsonReader originReader = new JsonReader(new InputStreamReader(originInput));
-                        this.originObject = new JsonParser().parse(originReader).getAsJsonObject();
-                    } catch (IOException e) {
-                        throw new RuntimeException("Failed to load Origin file", e);
-                    }
-                    if (!ModComponents.ORIGIN.get(this).getOrigin(OriginLayer.fromJson(new Identifier(Origins.MODID, "origin"), layerObject)).equals(Origin.fromJson(new Identifier(CursedOrigins.MODID, "literal_creeper"), originObject))) {
-                        ModComponents.ORIGIN.get(this).setOrigin(OriginLayer.fromJson(new Identifier(Origins.MODID, "origin"), layerObject), Origin.fromJson(new Identifier(CursedOrigins.MODID, "literal_creeper"), originObject));
-                        OriginComponent.sync((PlayerEntity) (Object) this);
-                        this.sendMessage(text, false);
-                    }
-                }
+    @Inject(method = "damageHelmet", at = @At("HEAD"), cancellable = true)
+    private void cancelHelmetDamage(DamageSource source, float amount, CallbackInfo ci) {
+        if (((DamageSourceAccess)source).isGlassGolemSource() || CursedPowers.GLASS.isActive((PlayerEntity)(Object)this)) ci.cancel();
+    }
+
+    @Inject(method = "damageShield", at = @At("HEAD"), cancellable = true)
+    private void cancelShieldDamage(float amount, CallbackInfo ci) {
+        if (((DamageSourceAccess)recentDamageSource).isGlassGolemSource() || CursedPowers.GLASS.isActive((PlayerEntity)(Object)this)) ci.cancel();
+    }
+
+    @Inject(method = "applyDamage", at = @At("HEAD"))
+    private void changeToLiteralCreeper(DamageSource source, float amount, CallbackInfo ci) {
+        Text text = new TranslatableText("chat.creeperalert");
+        if (this.world.isClient || this.isInvulnerableTo(source)) return;
+        if (source.getName().equals("creeperExplosion.player") || source.getName().equals("chargedCreeperExplosion.player.item") || source.getName().equals("chargedCreeperExplosion.player") || source.getName().equals("chargedCreeperExplosion.player.item")) {
+            if (!ModComponents.ORIGIN.get(this).getOrigin(OriginLayers.getLayer(Origins.identifier("origin"))).equals(OriginRegistry.get(CursedOrigins.identifier("literal_creeper")))) {
+                ModComponents.ORIGIN.get(this).setOrigin(OriginLayers.getLayer(Origins.identifier("origin")), OriginRegistry.get(CursedOrigins.identifier("literal_creeper")));
+                OriginComponent.sync((PlayerEntity) (Object) this);
+                this.sendMessage(text, false);
             }
         }
     }

@@ -1,18 +1,35 @@
 {
-  "type": "origins:prevent_item_use",
-  "item_condition": {
-    "type": "origins:and",
-    "conditions": [
-      {
-        "type": "origins:ingredient",
-        "ingredient": {
-          "tag": "cursedorigins:minotaur_edible"
+  "type": "origins:multiple",
+  "prevent_eating_items": {
+    "type": "origins:prevent_item_use",
+    "item_condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:food"
         },
-        "inverted": true
-      },
-      {
-        "type": "origins:food"
-      }
-    ]
+        {
+          "type": "origins:ingredient",
+          "ingredient": {
+            "tag": "cursedorigins:tall_grasses_grains"
+          },
+          "inverted": true
+        },
+        {
+          "type": "origins:ingredient",
+          "ingredient": {
+            "tag": "cursedorigins:grasses"
+          },
+          "inverted": true
+        }
+      ]
+    }
+  },
+  "prevent_eating_cake": {
+    "type": "origins:prevent_block_use",
+    "block_condition": {
+      "type": "origins:block",
+      "block": "minecraft:cake"
+    }
   }
 }

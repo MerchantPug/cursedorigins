@@ -22,6 +22,9 @@
   "power.cursedorigins.cake_is_a_lie.name": "The Cake is a Lie",
   "power.cursedorigins.cake_is_a_lie.description": "You can't digest normal sources of food.",
 
+  "gui.cursedorigins.plus_one_attack_damage": "+1 Attack Damage",
+  "gui.cursedorigins.plus_two_attack_damage": "+2 Attack Damage",
+
   "power.cursedorigins.self_explode.name": "Explosion.gif",
   "power.cursedorigins.self_explode.description": "You have the ability to explode, infecting any players caught in the explosion.",
   "power.cursedorigins.ailurophobia.name": "Ailurophobia",

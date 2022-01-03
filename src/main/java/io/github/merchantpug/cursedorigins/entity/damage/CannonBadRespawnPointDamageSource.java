@@ -1,5 +1,6 @@
 package io.github.merchantpug.cursedorigins.entity.damage;
 
+import io.github.merchantpug.cursedorigins.access.DamageSourceAccess;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.text.*;
@@ -9,6 +10,7 @@ public class CannonBadRespawnPointDamageSource extends DamageSource {
         super("cannonBadRespawnPoint");
         this.setScaledWithDifficulty();
         this.setExplosive();
+        ((DamageSourceAccess)this).setGlassGolemSource();
     }
 
     public Text getDeathMessage(LivingEntity entity) {

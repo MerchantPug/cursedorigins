@@ -16,8 +16,20 @@
       "operation": "addition"
     }
   },
+  "status_bar_texture": {
+    "type": "origins:status_bar_texture",
+    "texture": "cursedorigins:textures/gui/glass_icons.png"
+  },
+  "glass_head": {
+    "type": "cursedorigins:modify_equipped_item_render",
+    "equipment_slot": "HEAD",
+    "stack": {
+      "item": "minecraft:glass",
+      "tag": "{Enchantments: [{id: \"minecraft:protection\", lvl: 0s}]}"
+    }
+  },
   "model_color": {
     "type": "origins:model_color",
-    "alpha": 0.75
+    "alpha": 0.5
   }
 }

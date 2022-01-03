@@ -1,6 +1,7 @@
 package io.github.merchantpug.cursedorigins.registry;
 
-import io.github.apace100.origins.mixin.DamageSourceAccessor;
+import io.github.apace100.calio.mixin.DamageSourceAccessor;
+import io.github.merchantpug.cursedorigins.access.DamageSourceAccess;
 import io.github.merchantpug.cursedorigins.entity.damage.CannonBadRespawnPointDamageSource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -13,43 +14,42 @@ import net.minecraft.world.explosion.Explosion;
 
 public class CursedDamageSources {
 
-    public static final DamageSource GLASS_FALL = (((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("glassFall")).callSetBypassesArmor());
-    public static final DamageSource CREEPER_SELF = (((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("creeperSelf")).callSetBypassesArmor());
+    public static final DamageSource GLASS_FALL = ((DamageSourceAccess)((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("glassFall")).callSetBypassesArmor()).setGlassGolemSource();
 
     public static DamageSource cannonPlayer(Entity attacker) {
-        return ((DamageSourceAccessor)new EntityDamageSource("cannonPlayer", attacker)).callSetBypassesArmor();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new EntityDamageSource("cannonPlayer", attacker)).callSetBypassesArmor()).setGlassGolemSource();
     }
 
     public static DamageSource cannonArrow(ProjectileEntity projectile, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonArrow", projectile, attacker)).callSetBypassesArmor().setProjectile();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonArrow", projectile, attacker)).callSetBypassesArmor().setProjectile()).setGlassGolemSource();
     }
 
     public static DamageSource cannonTrident(Entity trident, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonTrident", trident, attacker)).callSetBypassesArmor().setProjectile();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonTrident", trident, attacker)).callSetBypassesArmor().setProjectile()).setGlassGolemSource();
     }
 
     public static DamageSource cannonMagic(Entity magic, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonMagic", magic, attacker)).callSetBypassesArmor().setUsesMagic();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonMagic", magic, attacker)).callSetBypassesArmor().setUsesMagic()).setGlassGolemSource();
     }
 
     public static DamageSource cannonFirework(ProjectileEntity firework, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonFirework", firework, attacker)).callSetBypassesArmor().setProjectile().setExplosive();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonFirework", firework, attacker)).callSetBypassesArmor()).setGlassGolemSource().setProjectile().setExplosive();
     }
 
     public static DamageSource cannonEggProjectile(Entity projectile, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonEgg", projectile, attacker)).callSetBypassesArmor().setProjectile();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonEgg", projectile, attacker)).callSetBypassesArmor()).setGlassGolemSource().setProjectile();
     }
 
     public static DamageSource cannonSnowballProjectile(Entity projectile, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonSnowball", projectile, attacker)).callSetBypassesArmor().setProjectile();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonSnowball", projectile, attacker)).callSetBypassesArmor()).setGlassGolemSource().setProjectile();
     }
 
     public static DamageSource cannonEnderPearlProjectile(Entity projectile, Entity attacker) {
-        return ((DamageSourceAccessor)new ProjectileDamageSource("cannonPearl", projectile, attacker)).callSetBypassesArmor().setProjectile();
+        return ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonPearl", projectile, attacker)).callSetBypassesArmor()).setGlassGolemSource().setProjectile();
     }
 
     public static DamageSource cannonFireball(AbstractFireballEntity fireball, Entity attacker) {
-        return attacker == null ? ((DamageSourceAccessor)new ProjectileDamageSource("onFire", fireball, fireball)).callSetFire().setProjectile() : ((DamageSourceAccessor)new ProjectileDamageSource("cannonFireball", fireball, attacker)).callSetFire().setProjectile();
+        return attacker == null ? ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("onFire", fireball, fireball)).callSetFire()).setGlassGolemSource().setProjectile() : ((DamageSourceAccess)((DamageSourceAccessor)new ProjectileDamageSource("cannonFireball", fireball, attacker)).callSetFire()).setGlassGolemSource().setProjectile();
     }
 
     public static DamageSource cannonBadRespawnPoint() {
@@ -61,7 +61,7 @@ public class CursedDamageSources {
     }
 
     public static DamageSource cannonExplosion(LivingEntity attacker) {
-        return attacker != null ? ((DamageSourceAccessor)new EntityDamageSource("cannonExplosion.player", attacker)).callSetBypassesArmor().setScaledWithDifficulty().setExplosive() : (((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("cannonExplosion")).callSetBypassesArmor().setExplosive());
+        return attacker != null ? ((DamageSourceAccess)((DamageSourceAccessor)new EntityDamageSource("cannonExplosion.player", attacker)).callSetBypassesArmor()).setGlassGolemSource().setScaledWithDifficulty().setExplosive() : ((DamageSourceAccess)((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("cannonExplosion")).callSetBypassesArmor()).setGlassGolemSource().setExplosive();
     }
 
     public static DamageSource cannonCrystalExplosion(Explosion cannonCrystalExplosion) {
@@ -69,7 +69,7 @@ public class CursedDamageSources {
     }
 
     public static DamageSource cannonCrystalExplosion(LivingEntity attacker) {
-        return attacker != null ? ((DamageSourceAccessor)new EntityDamageSource("cannonCrystalExplosion.player", attacker)).callSetBypassesArmor().setScaledWithDifficulty().setExplosive() : (((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("cannonCrystalExplosion")).callSetBypassesArmor().setExplosive());
+        return attacker != null ? ((DamageSourceAccess)((DamageSourceAccessor)new EntityDamageSource("cannonCrystalExplosion.player", attacker)).callSetBypassesArmor()).setGlassGolemSource().setScaledWithDifficulty().setExplosive() : ((DamageSourceAccess)((DamageSourceAccessor)DamageSourceAccessor.createDamageSource("cannonCrystalExplosion")).callSetBypassesArmor()).setGlassGolemSource().setExplosive();
     }
 
     public static DamageSource creeperExplosion(Explosion creeperExplosion) {
