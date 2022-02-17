@@ -64,8 +64,6 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "drop", at = @At("HEAD"))
     private void dropLiteralCreeperItems(DamageSource source, CallbackInfo ci) {
         if (source.getAttacker() == this) return;
-        CursedOrigins.LOGGER.info("Drop");
-        CursedOrigins.LOGGER.info(source.getName());
         if (source.getName().equals("chargedCreeperExplosion") || source.getName().equals("chargedCreeperExplosion.player")) {
             if ((LivingEntity)(Object)this instanceof CreeperEntity) {
                 this.dropItem(Items.CREEPER_HEAD);
