@@ -41,7 +41,7 @@
             "saturation": 0.6
           },
           {
-            "type": "cursedorigins:swing_hand",
+            "type": "origins:swing_hand",
             "hand": "MAIN_HAND"
           },
           {
@@ -89,7 +89,7 @@
             "saturation": 0.6
           },
           {
-            "type": "cursedorigins:swing_hand",
+            "type": "origins:swing_hand",
             "hand": "MAIN_HAND"
           },
           {
@@ -146,7 +146,7 @@
             "saturation": 0.6
           },
           {
-            "type": "cursedorigins:swing_hand",
+            "type": "origins:swing_hand",
             "hand": "MAIN_HAND"
           },
           {
