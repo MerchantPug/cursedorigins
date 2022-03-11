@@ -22,7 +22,7 @@
   },
   "glass_head": {
     "type": "cursedorigins:modify_equipped_item_render",
-    "equipment_slot": "HEAD",
+    "slot": "HEAD",
     "stack": {
       "item": "minecraft:glass",
       "tag": "{Enchantments: [{id: \"minecraft:protection\", lvl: 0s}]}"
