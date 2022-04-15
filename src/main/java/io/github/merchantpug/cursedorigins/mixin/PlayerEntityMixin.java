@@ -10,6 +10,7 @@ import io.github.merchantpug.cursedorigins.access.DamageSourceAccess;
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
 import io.github.merchantpug.cursedorigins.registry.CursedItems;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
+import io.github.merchantpug.cursedorigins.registry.CursedSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -45,6 +46,8 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
     @Shadow public abstract boolean isInvulnerableTo(DamageSource damageSource);
 
+    @Shadow public abstract void playSound(SoundEvent sound, float volume, float pitch);
+
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -52,6 +55,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @ModifyVariable(method = "attack", at = @At("STORE"))
     private boolean bl6(boolean bl6, Entity target) {
         if (CursedPowers.CANNON.isActive(this)) {
+            this.playSound(CursedSounds.ENTITY_GLASS_GOLEM_2_BONG, 1.0F, 1.0F);
             return bl6 = target.damage(CursedDamageSources.cannonPlayer(this), (float)this.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE));
         }
         return bl6;

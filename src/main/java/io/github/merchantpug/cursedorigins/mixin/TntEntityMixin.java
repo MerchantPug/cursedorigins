@@ -2,6 +2,7 @@ package io.github.merchantpug.cursedorigins.mixin;
 
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
+import io.github.merchantpug.cursedorigins.registry.CursedSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

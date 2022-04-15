@@ -1,9 +1,9 @@
 package io.github.merchantpug.cursedorigins.mixin;
 
-import io.github.merchantpug.cursedorigins.CursedOrigins;
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
 import io.github.merchantpug.cursedorigins.registry.CursedItems;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
+import io.github.merchantpug.cursedorigins.registry.CursedSounds;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -17,7 +17,6 @@ import net.minecraft.entity.mob.SkeletonEntity;
 import net.minecraft.entity.mob.WitherSkeletonEntity;
 import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.GameRules;
@@ -58,6 +57,13 @@ public abstract class LivingEntityMixin extends Entity {
     private void setSprinting(boolean sprinting, CallbackInfo ci) {
         if(CursedPowers.CANT_SPRINT.isActive(this)) {
             ci.cancel();
+        }
+    }
+
+    @Inject(method = "damage", at = @At("RETURN"))
+    private void playBongSound(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (cir.getReturnValue() && source.getName().equals("cannonExplosion") || source.getName().equals("cannonExplosion.player") || source.getName().equals("cannonCrystalExplosion") || source.getName().equals("cannonCrystalExplosion.player") || source.getName().equals("cannonBadRespawnPoint")) {
+            this.playSound(CursedSounds.ENTITY_GLASS_GOLEM_2_BONG, 1.0F, 1.0F);
         }
     }
 

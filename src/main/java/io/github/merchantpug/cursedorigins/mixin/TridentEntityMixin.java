@@ -2,6 +2,7 @@ package io.github.merchantpug.cursedorigins.mixin;
 
 import io.github.merchantpug.cursedorigins.registry.CursedDamageSources;
 import io.github.merchantpug.cursedorigins.registry.CursedPowers;
+import io.github.merchantpug.cursedorigins.registry.CursedSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -21,7 +22,8 @@ public abstract class TridentEntityMixin extends PersistentProjectileEntity {
 
     @ModifyVariable(method = "onEntityHit", at = @At("STORE"))
     private DamageSource modifyDamageSource(DamageSource damageSource, EntityHitResult entityHitResult) {
-        if (CursedPowers.CANNON.isActive(this.getOwner())) {
+        if (this.getOwner() != null && CursedPowers.CANNON.isActive(this.getOwner())) {
+            this.playSound(CursedSounds.ENTITY_GLASS_GOLEM_2_BONG, 1.0F, 1.0F);
             damageSource = CursedDamageSources.cannonTrident(this, this.getOwner());
         }
         return damageSource;

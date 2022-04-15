@@ -2,10 +2,10 @@
   "type": "origins:multiple",
   "hurt_sound": {
     "type": "cursedorigins:custom_hurt_sound",
-    "sound": "block.glass.break"
+    "sound": "cursedorigins:entity.glassgolem2.death"
   },
   "death_sound": {
     "type": "cursedorigins:custom_death_sound",
-    "sound": "block.glass.break"
+    "sound": "cursedorigins:entity.glassgolem2.death"
   }
 }

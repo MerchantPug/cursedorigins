@@ -6,5 +6,19 @@
         "stream": true
       }
     ]
+  },
+  "entity.glassgolem2.bong": {
+    "subtitle": "subtitles.entity.glassgolem2.bong",
+    "sounds": [
+      "cursedorigins:entity/bong"
+    ]
+  },
+  "entity.glassgolem2.death": {
+    "subtitle": "subtitles.block.generic.break",
+    "sounds": [
+      "random/glass1",
+      "random/glass2",
+      "random/glass3"
+    ]
   }
 }

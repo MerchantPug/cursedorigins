@@ -15,6 +15,7 @@
     "LivingEntityMixin",
     "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
+    "PotionEntityMixin",
     "RespawnAnchorBlockMixin",
     "SnowballEntityMixin",
     "StatusEffectMixin",
